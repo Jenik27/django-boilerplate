@@ -21,18 +21,6 @@ SUCCESS = "\x1b[1;32m [SUCCESS]: "
 DEBUG_VALUE = "debug"
 
 
-def remove_open_source_files():
-    file_names = ["CONTRIBUTORS.txt", "LICENSE"]
-    for file_name in file_names:
-        Path(file_name).unlink()
-
-
-def remove_gplv3_files():
-    file_names = ["COPYING"]
-    for file_name in file_names:
-        Path(file_name).unlink()
-
-
 def remove_custom_user_manager_files():
     users_path = Path("{{cookiecutter.project_slug}}", "users")
     (users_path / "managers.py").unlink()
@@ -43,10 +31,6 @@ def remove_pycharm_files():
     idea_dir_path = Path(".idea")
     if idea_dir_path.exists():
         shutil.rmtree(idea_dir_path)
-
-    docs_dir_path = Path("docs", "pycharm")
-    if docs_dir_path.exists():
-        shutil.rmtree(docs_dir_path)
 
 
 def remove_docker_files():
@@ -73,16 +57,6 @@ def remove_nginx_docker_files():
 
 def remove_utility_files():
     shutil.rmtree("utility")
-
-
-def remove_heroku_files():
-    file_names = ["Procfile", "runtime.txt", "requirements.txt"]
-    for file_name in file_names:
-        if file_name == "requirements.txt" and "{{ cookiecutter.ci_tool }}".lower() == "travis":
-            # don't remove the file if we are using travisci but not using heroku
-            continue
-        Path(file_name).unlink()
-    shutil.rmtree("bin")
 
 
 def remove_sass_files():
@@ -415,11 +389,6 @@ def main():
     )
     set_flags_in_settings_files()
 
-    if "{{ cookiecutter.open_source_license }}" == "Not open source":
-        remove_open_source_files()
-    if "{{ cookiecutter.open_source_license}}" != "GPLv3":
-        remove_gplv3_files()
-
     if "{{ cookiecutter.username_type }}" == "username":
         remove_custom_user_manager_files()
 
@@ -436,8 +405,6 @@ def main():
     if "{{ cookiecutter.use_docker }}".lower() == "y" and "{{ cookiecutter.cloud_provider}}" != "AWS":
         remove_aws_dockerfile()
 
-    if "{{ cookiecutter.use_heroku }}".lower() == "n":
-        remove_heroku_files()
 
     if "{{ cookiecutter.use_docker }}".lower() == "n" and "{{ cookiecutter.use_heroku }}".lower() == "n":
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
