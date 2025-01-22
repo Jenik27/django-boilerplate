@@ -405,13 +405,11 @@ def main():
     if "{{ cookiecutter.use_docker }}".lower() == "y" and "{{ cookiecutter.cloud_provider}}" != "AWS":
         remove_aws_dockerfile()
 
-
-    if "{{ cookiecutter.use_docker }}".lower() == "n" and "{{ cookiecutter.use_heroku }}".lower() == "n":
+    if "{{ cookiecutter.use_docker }}".lower() == "n":
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             print(
-                INFO + ".env(s) are only utilized when Docker Compose and/or "
-                "Heroku support is enabled so keeping them does not make sense "
-                "given your current setup." + TERMINATOR
+                INFO + ".env(s) are only utilized when Docker Compose support is enabled "
+                "so keeping them does not make sense given your current setup." + TERMINATOR
             )
         remove_envs_and_associated_files()
     else:
