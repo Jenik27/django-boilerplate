@@ -33,5 +33,6 @@
   "use_whitenoise": "n",
   "ci_tool": ["None", "Travis", "Gitlab", "Github", "Drone"],
   "keep_local_envs_in_vcs": "y",
-  "debug": "n"
+  "debug": "n",
+  "open_source_license": "MIT"
 }
