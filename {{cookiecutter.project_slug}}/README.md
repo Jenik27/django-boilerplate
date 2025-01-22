@@ -108,7 +108,6 @@ Now you have your own mail server running locally, ready to receive whatever you
 
 {%- endif %}
 
-{%- endif %}
 {%- if cookiecutter.use_sentry == "y" %}
 
 ### Sentry
