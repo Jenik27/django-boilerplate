@@ -5,10 +5,6 @@
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-{%- if cookiecutter.open_source_license != "Not open source" %}
-
-License: {{cookiecutter.open_source_license}}
-{%- endif %}
 
 ## Settings
 
@@ -126,14 +122,6 @@ You must set the DSN url in production.
 ## Deployment
 
 The following details how to deploy this application.
-{%- if cookiecutter.use_heroku.lower() == "y" %}
-
-### Heroku
-
-See detailed [cookiecutter-django Heroku documentation](https://cookiecutter-django.readthedocs.io/en/latest/3-deployment/deployment-on-heroku.html).
-
-{%- endif %}
-{%- if cookiecutter.use_docker.lower() == "y" %}
 
 ### Docker
 
